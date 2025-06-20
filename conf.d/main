@@ -14,7 +14,7 @@ cache_images() {
   trap fs_cleanup INT TERM EXIT
 
   # podman requires sysfs & cgroups & fuse for fuse-overlayfs
-  mount -t sysfs sysfs /sys -o ro,nosuid,nodev,noexec,relatime
+  mount -t sysfs sysfs /sys -o ro,nosuid,nodev,noexec,relatime || true
   mkdir -p /sys/fs/{cgroup,fuse/connections}
   mount -t cgroup2 cgroup2 /sys/fs/cgroup -o rw,nosuid,nodev,noexec,relatime
   mount -t fusectl fusectl /sys/fs/fuse/connections -o rw,nosuid,nodev,noexec,relatime
